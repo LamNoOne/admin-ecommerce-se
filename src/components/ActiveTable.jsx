@@ -3,8 +3,6 @@ import activeUser from "../views/data/ActiveUser"
 import Line from "../components/Line"
 import style from "../style"
 
-// De sau, co thoi gian them vo lam mau choi haha
-
 const ActiveTable = () => {
     const total = activeUser.reduce((acc, cur) => acc + cur.number, 0)
 

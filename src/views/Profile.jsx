@@ -14,15 +14,20 @@ const Profile = () => {
     }
     const [name, setName] = useState("Henry William")
     const [gender, setGender] = useState("male")
+    const [address, setAddress] = useState('')
     const [selectedFile, setSelectedFile] = useState(null)
 
-    const canSave = Boolean(name) && Boolean(gender) && Boolean(selectedFile)
+    const canSave = Boolean(name) && Boolean(gender) && Boolean(address)
 
     const handleChangeName = (e) => {
         setName(e.target.value)
     }
     const handleChangeGender = (e) => {
         setGender(e.target.value)
+    }
+
+    const handleChangeAddress = (e) => {
+        setAddress(e.target.value)
     }
 
     const isChecked = (value) => gender === value
@@ -35,8 +40,8 @@ const Profile = () => {
         const formData = new FormData()
         formData.append("file", selectedFile)
         formData.append("upload_preset", "a5ymyhyp")
-
-        axios
+        if(selectedFile) {
+            axios
             .post(
                 "https://api.cloudinary.com/v1_1/dmnzkqysq/image/upload",
                 formData
@@ -44,8 +49,11 @@ const Profile = () => {
             .then((response) => response?.data?.url)
             .then((url) => {
                 // dispatch to update user's info
-                console.log(url, name, gender)
+                console.log(url, name, address, gender)
             })
+        } else {
+            console.log(name, address, gender)
+        }
     }
 
     return (
@@ -63,13 +71,22 @@ const Profile = () => {
                             <h1 className="text-base">Login name:</h1>
                             <p className="text-base">henrywilliam</p>
                         </div>
-                        <div className="flex flex-row items-center gap-6 px-4 py-2">
+                        <div className="flex flex-row items-center justify-between me-8 gap-6 px-4 py-2">
                             <h1 className="text-base">Name:</h1>
                             <input
-                                className="text-base w-full p-2 outline-none border border-[#ccc]"
+                                className="text-base w-[660px] p-2 outline-none border border-[#ccc]"
                                 type="text"
                                 value={name}
                                 onChange={handleChangeName}
+                            />
+                        </div>
+                        <div className="flex flex-row items-center justify-between me-8 gap-6 px-4 py-2">
+                            <h1 className="text-base">Address:</h1>
+                            <input
+                                className="text-base w-[660px] p-2 outline-none border border-[#ccc]"
+                                type="text"
+                                value={address}
+                                onChange={handleChangeAddress}
                             />
                         </div>
                         <div className="flex flex-row items-center gap-6 px-4 py-2">

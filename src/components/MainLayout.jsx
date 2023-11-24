@@ -22,9 +22,9 @@ const MainLayout = () => {
     return (
         <Layout style={{ width: "100vw" }}>
             <Sider trigger={null} collapsible collapsed={collapsed}>
-                <div className="logo flex items-center justify-around h-[50px] px-2 bg-[#ffd333]">
+                <div className="logo flex items-center justify-around h-[50px] px-2 bg-[#1677ff]">
                     {!collapsed && (
-                        <h1 className="text-2xl font-bold text-gray-700">
+                        <h1 className="text-2xl font-bold text-white">
                             SE-SHOP
                         </h1>
                     )}
